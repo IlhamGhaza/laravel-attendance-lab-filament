@@ -6,8 +6,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasFactory, Notifiable;
 
@@ -19,7 +21,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role_id',
         'password',
+
     ];
 
     /**
@@ -44,4 +48,34 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+        public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+    public function userDetail()
+    {
+        return $this->hashMany(UserDetail::class, 'user_id');
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+
+    {
+        //if role_id in user === 1 can access admin panel
+        if ($this->role_id === 3) {
+            return false;
+        }
+        return true;
+    }
+    // public function canAccessPanel(Panel $panel): bool
+    // {
+
+
+        // if($panel->getId()=='admin'){
+        //     if($this->role_id===3){
+        //         return false;
+        //     }
+        //     return true;
+        // }
+
+
 }
