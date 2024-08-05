@@ -1,66 +1,142 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Attendance Lab Filament
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project is a backend system for a lab attendance mobile app using Laravel, featuring face detection and geolocation for attendance verification.
+
+## Table of Contents
+
+- [Laravel Attendance Lab Filament](#laravel-attendance-lab-filament)
+  - [Table of Contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+  - [Features](#features)
+  - [Database Schema](#database-schema)
+  - [About Laravel](#about-laravel)
+    - [Installation](#installation)
+  - [API Documentation](#api-documentation)
+  - [Docker](#docker)
+  - [Contributing](#contributing)
+  - [License](#license)
+
+## Getting Started
+
+To get started with this project, follow the instructions below.
+
+### Prerequisites
+
+Ensure you have the following software installed on your machine:
+
+- PHP (version 8.0.0 or higher)
+- Laravel (version 11.x)
+- Composer
+
+## Features
+
+- **Face Detection**: Automatically verify attendance using face recognition technology.
+- **Geolocation**: Confirm the presence of users at designated locations.
+- **Admin Panel**: Manage attendance records and system configurations via the Filament admin panel.
+
+## Database Schema
+
+The database schema for this project is visualized in the following diagram:
+
+![Database Schema](public/image.png)
+
+For a detailed view and interaction with the schema, please refer to the [DrawSQL diagram](your-drawsql-link).
 
 ## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Laravel is a web application framework with expressive, elegant syntax. It simplifies common web development tasks, making development enjoyable and creative. Key features include:
 
 - [Simple, fast routing engine](https://laravel.com/docs/routing).
 - [Powerful dependency injection container](https://laravel.com/docs/container).
 - Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+For more information about Laravel, visit [About Laravel](laravel.md).
 
-## Learning Laravel
+### Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+1. Clone the repository:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    ```bash
+    git clone https://github.com/IlhamGhaza/laravel-attendance-lab-filament.git
+    ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. Navigate to the project directory:
 
-## Laravel Sponsors
+    ```bash
+    cd laravel-attendance-lab-filament
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. Install PHP dependencies:
 
-### Premium Partners
+    ```bash
+    composer install
+    ```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+4. Configure the environment variables:
+    - Rename the `.env.example` file to `.env`.
+
+    ```bash
+    cp .env.example .env
+    ```
+
+    - Update the necessary environment variables in the `.env` file.
+
+5. Generate the application key:
+
+    ```bash
+    php artisan key:generate
+    ```
+
+6. Create a database and update the database settings in the `.env` file.
+
+   ```bash
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE= attendace-lab-db
+    DB_USERNAME= root (or your db username)
+    DB_PASSWORD= (your password)
+   ```
+
+7. Run the database migrations:
+
+    ```bash
+    php artisan migrate
+    ```
+
+8. Start the development server:
+
+    ```bash
+    php artisan serve
+    ```
+
+9.  Log in to the Filament admin panel at [http://localhost:8000/admin](http://localhost:8000/admin) to manage the system.
+
+10. Use the following credentials to log in:
+    - Email: `ilham@admin.com`
+    - Password: `Secretp4ss`
+
+    **Note:** You can edit in the database seeder at `database/seeders/DatabaseSeeder.php`.
+
+11. To test the API, use the Postman collection file included in the project:
+
+    ```bash
+    Laravel Attendance Lab Filament.postman_collection.json
+    ```
+
+## API Documentation
+
+API documentation is provided in the Postman collection file included in the project.
+
+## Docker
+
+Coming soon (＾▽＾)
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Contributions are welcome! If you encounter any issues or have suggestions, please open an issue or submit a pull request.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License. You may not use this project for commercial purposes. See the [LICENSE](LICENSE) file for more details.
