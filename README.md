@@ -111,7 +111,7 @@ For more information about Laravel, visit [About Laravel](laravel.md).
     php artisan serve
     ```
 
-9.  Log in to the Filament admin panel at [http://localhost:8000/admin](http://localhost:8000/admin) to manage the system.
+9. Log in to the Filament admin panel at [http://localhost:8000/admin](http://localhost:8000/admin) to manage the system.
 
 10. Use the following credentials to log in:
     - Email: `ilham@admin.com`
