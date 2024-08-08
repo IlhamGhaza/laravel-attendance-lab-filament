@@ -25,6 +25,8 @@ class UserDetailResource extends Resource
     protected static ?string $model = UserDetail::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'User Manajement';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
