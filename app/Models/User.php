@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
+use Devdojo\Auth\Models\User as AuthUser;
 use Filament\Panel;
 
 class User extends Authenticatable implements FilamentUser
@@ -54,7 +55,7 @@ class User extends Authenticatable implements FilamentUser
     }
     public function userDetail()
     {
-        return $this->hashMany(UserDetail::class, 'user_id');
+        return $this->hasOne(UserDetail::class, 'user_id');
     }
 
     public function canAccessPanel(Panel $panel): bool
