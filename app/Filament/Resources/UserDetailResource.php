@@ -11,10 +11,10 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
-use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -24,7 +24,7 @@ class UserDetailResource extends Resource
 {
     protected static ?string $model = UserDetail::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-identification';
     protected static ?string $navigationGroup = 'User Manajement';
     protected static ?int $navigationSort = 2;
 
@@ -103,13 +103,15 @@ class UserDetailResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteBulkAction::make()
+                // Tables\Actions\DeleteAction::make()
+                Tables\Actions\DeleteAction::make()
                 ->successNotification(
-                        Notification::make()
-                            ->success()
-                            ->title('Success')
-                            ->body('Data deleted successfully')
+                    Notification::make()
+                        ->title('User Detail Deleted')
+                        ->body('User Detail has been deleted successfully.')
+                        ->success()
                 ),
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

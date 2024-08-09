@@ -64,17 +64,16 @@ class UserResource extends Resource
             ->filters([
                 //
             ])
-            ->actions([
+          ->actions([
+                // Tables\Actions\ExportAction::make(),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteBulkAction::make()
+                Tables\Actions\DeleteAction::make()
                 ->successNotification(
-                        Notification::make()
-                            ->success()
-                            ->title('User deleted successfully')
-                            ->body('The user has been deleted successfully.')
-                )
-
-                ,
+                    Notification::make()
+                        ->title('User Deleted')
+                        ->body('User has been deleted successfully.')
+                        ->success()
+                ),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

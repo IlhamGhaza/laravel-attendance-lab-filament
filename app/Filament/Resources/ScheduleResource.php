@@ -14,7 +14,9 @@ class ScheduleResource extends Resource
 {
     protected static ?string $model = Schedule::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-calendar';
+    protected static ?string $navigationGroup = 'Attendace Manajement';
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {
@@ -34,14 +36,13 @@ class ScheduleResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteBulkAction::make()
-                    ->successNotification(
-                        Notification::make()
-                            ->success()
-                            ->title('Schedule deleted')
-                            ->body('Schedule deleted successfully')
-                    ),
+                 Tables\Actions\DeleteAction::make()
+                ->successNotification(
+                    Notification::make()
+                        ->success()
+                        ->title('Schedule deleted')
+                        ->body('Schedule deleted successfully')
+                ),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

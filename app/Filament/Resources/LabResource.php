@@ -7,6 +7,7 @@ use App\Filament\Resources\LabResource\RelationManagers;
 use App\Models\Lab;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -17,7 +18,9 @@ class LabResource extends Resource
 {
     protected static ?string $model = Lab::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-beaker';
+    protected static ?string $navigationGroup = 'Lab Manajement';
+    protected static ?int $navigationSort = 9;
 
     public static function form(Form $form): Form
     {
@@ -38,13 +41,13 @@ class LabResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteBulkAction::make()
-                    ->successNotification(
-                         \Filament\Notifications\Notification::make()
-                            ->success()
-                            ->title('Lab Deleted')
-                            ->body('The lab has been deleted.')
-                    ),
+                Tables\Actions\DeleteAction::make()
+                ->successNotification(
+                    Notification::make()
+                        ->title('Lab deleted')
+                        ->body('Lab deleted successfully')
+                        ->success()
+                ),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

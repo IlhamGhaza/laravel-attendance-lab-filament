@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\AbsenceResource\Pages;
 use App\Models\Absence;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -13,7 +14,9 @@ class AbsenceResource extends Resource
 {
     protected static ?string $model = Absence::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-check-circle';
+    protected static ?string $navigationGroup = 'Attendace Manajement';
+    protected static ?int $navigationSort = 7;
 
     public static function form(Form $form): Form
     {
@@ -34,13 +37,13 @@ class AbsenceResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteBulkAction::make()
-                    ->successNotification(
-                        \Filament\Notifications\Notification::make()
-                            ->success()
-                            ->title('Absence deleted')
-                            ->body('Absence deleted successfully')
-                    ),
+                 Tables\Actions\DeleteAction::make()
+                ->successNotification(
+                    Notification::make()
+                        ->title('Absence deleted')
+                        ->body('Absence deleted successfully')
+                        ->success()
+                ),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

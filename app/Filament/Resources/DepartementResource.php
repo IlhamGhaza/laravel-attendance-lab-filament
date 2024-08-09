@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\DepartementResource\Pages;
 use App\Filament\Resources\DepartementResource\RelationManagers;
-use App\Models\Departement;
+use App\Models\Department;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,9 +15,11 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class DepartementResource extends Resource
 {
-    protected static ?string $model = Departement::class;
+    protected static ?string $model = Department::class;
+    protected static ?string $navigationGroup = 'Lab Manajement';
+    protected static ?int $navigationSort = 8;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-building-office';
 
     public static function form(Form $form): Form
     {

@@ -5,8 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\SubjectResource\Pages;
 use App\Models\Subject;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Notifications\Notification;
+use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
@@ -14,7 +14,9 @@ class SubjectResource extends Resource
 {
     protected static ?string $model = Subject::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-book-open';
+    protected static ?string $navigationGroup = 'Lab Manajement';
+    protected static ?int $navigationSort = 10;
 
     public static function form(Form $form): Form
     {
@@ -35,13 +37,13 @@ class SubjectResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteBulkAction::make()
-                    ->successNotification(
-                        Notification::make()
-                            ->success()
-                            ->title('Subject deleted')
-                            ->body('Subject deleted successfully')
-                    ),
+                 Tables\Actions\DeleteAction::make()
+                ->successNotification(
+                    Notification::make()
+                        ->title('Subject deleted')
+                        ->body('Subject deleted successfully')
+                        ->success()
+                ),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

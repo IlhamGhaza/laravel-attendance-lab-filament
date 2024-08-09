@@ -7,6 +7,7 @@ use App\Filament\Resources\AttendanceResource\RelationManagers;
 use App\Models\Attendance;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -17,7 +18,9 @@ class AttendanceResource extends Resource
 {
     protected static ?string $model = Attendance::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-clock';
+    protected static ?string $navigationGroup = 'Attendace Manajement';
+    protected static ?int $navigationSort = 6;
 
     public static function form(Form $form): Form
     {
@@ -38,13 +41,13 @@ class AttendanceResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteBulkAction::make()
-                    ->successNotification(
-                         \Filament\Notifications\Notification::make()
-                            ->success()
-                            ->title('Attendance deleted')
-                            ->body('Attendance deleted successfully')
-                    ),
+                 Tables\Actions\DeleteAction::make()
+                ->successNotification(
+                    Notification::make()
+                        ->title('Attendance Deleted')
+                        ->body('The attendance has been deleted.')
+                        ->success()
+                ),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
